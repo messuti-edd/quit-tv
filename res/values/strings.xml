@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Quit_TVActivity!</string>
+    <string name="app_name">Quit_TV</string>
+    <string name="watch_tv">Watch TV</string>
+    <string name="quit_tv">Quit TV</string>
+    <string name="watching_tv">You have watched TV for: </string>
+    <color name="blue">#0000FF</color>
+
+</resources>

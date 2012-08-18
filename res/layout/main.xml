@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    >
+    <Button
+        android:id="@+id/btnWatchTv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/watch_tv" 
+        android:onClick="watchTv"
+        />
+
+    <TextView
+        android:id="@+id/txtWatchingTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtCounter"
+        android:layout_centerHorizontal="true"
+        android:text="@string/watching_tv"
+        android:textSize="15dp" 
+        />
+
+    <TextView
+        android:id="@+id/txtCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="00:00:00/2:00" 
+        />
+
+</RelativeLayout>
