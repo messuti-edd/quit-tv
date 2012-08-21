@@ -1,6 +1,10 @@
 package com.edd.qtv;
 
+import java.util.List;
+
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,10 +18,10 @@ public class TvLogDatabaseHandler extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "quitTv";
  
-    // Contacts table name
+    // TV_Logs table name
     private static final String TABLE_TV_LOG = "tv_logs";
  
-    // Contacts Table Columns names
+    // TV_Logs Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_FECHA = "fecha";
     private static final String KEY_HORAS_TV = "horas_tv";
@@ -44,4 +48,59 @@ public class TvLogDatabaseHandler extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 	
+	public void addTvLog(TvLog tvLog) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		 
+	    ContentValues values = new ContentValues();
+	    values.put(KEY_FECHA, tvLog.get_fecha());
+	    values.put(KEY_HORAS_TV, tvLog.get_horas_tv());
+	 
+	    // Inserting Row
+	    db.insert(TABLE_TV_LOG, null, values);
+	    db.close();
+	}
+	
+	public TvLog getTvLog(int id) {
+	    SQLiteDatabase db = this.getReadableDatabase();
+	 
+	    Cursor cursor = db.query(TABLE_TV_LOG, new String[] { KEY_ID,
+	            KEY_FECHA, KEY_HORAS_TV }, KEY_ID + "=?",
+	            new String[] { String.valueOf(id) }, null, null, null, null);
+	    
+	    if (cursor != null)
+	        cursor.moveToFirst();
+	 
+	    TvLog tvLog = new TvLog( Integer.parseInt(cursor.getString(0)),
+	            cursor.getString(1), Double.parseDouble(cursor.getString(2)) );
+	    
+	    return tvLog;
+	}
+	
+	public List<TvLog> getAllTvLogs() {
+		return null;
+	}
+	 
+	
+	public int getTvLogsCount() {
+		return 0;
+	}
+	
+	// Updating single contact
+	public int updateContact(TvLog tvLog) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_FECHA, tvLog.get_fecha());
+		values.put(KEY_HORAS_TV, tvLog.get_horas_tv());
+		
+		return db.update(TABLE_TV_LOG, values, KEY_ID + "=?", 
+				new String[] {String.valueOf(tvLog.get_id())});
+	}
+	 
+	// Deleting single contact
+	public int deleteContact(TvLog tvLog) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		return db.delete(TABLE_TV_LOG, KEY_ID+"=?", 
+				new String[] {String.valueOf(tvLog.get_id())});
+	}
 }

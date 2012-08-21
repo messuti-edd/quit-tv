@@ -14,10 +14,10 @@ public class TvLogDetalleDatabaseHandler extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "quitTv";
  
-    // Contacts table name
-    private static final String TABLE_TV_LOG = "tv_log_detalles";
+    // TV_Logs_Detalles table name
+    private static final String TABLE_TV_LOG_DETALLES = "tv_log_detalles";
  
-    // Contacts Table Columns names
+    // TV_Logs_Detalles Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_HORAS_TV = "horas_tv";
     private static final String KEY_HORA_INICIO = "hora_inicio";
@@ -30,7 +30,7 @@ public class TvLogDetalleDatabaseHandler extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String CREATE_TV_LOG_TABLE = "CREATE TABLE " + TABLE_TV_LOG + "(" +
+		String CREATE_TV_LOG_TABLE = "CREATE TABLE " + TABLE_TV_LOG_DETALLES + "(" +
 				KEY_ID + " INTEGER PRIMARY KEY, " + 
 				KEY_HORAS_TV + " INTEGER, " + 
 				KEY_HORA_INICIO + " DATETIME, " + 
@@ -41,7 +41,7 @@ public class TvLogDetalleDatabaseHandler extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROM TABLE IF EXIST " + TABLE_TV_LOG);
+		db.execSQL("DROM TABLE IF EXIST " + TABLE_TV_LOG_DETALLES);
 		
 		onCreate(db);
 	}
