@@ -86,7 +86,7 @@ public class TvLogDatabaseHandler extends SQLiteOpenHelper {
 	}
 	
 	// Updating single contact
-	public int updateContact(TvLog tvLog) {
+	public int updateTvLogDetalle(TvLog tvLog) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
@@ -98,7 +98,7 @@ public class TvLogDatabaseHandler extends SQLiteOpenHelper {
 	}
 	 
 	// Deleting single contact
-	public int deleteContact(TvLog tvLog) {
+	public int deleteTvLogDetalle(TvLog tvLog) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		return db.delete(TABLE_TV_LOG, KEY_ID+"=?", 
 				new String[] {String.valueOf(tvLog.get_id())});

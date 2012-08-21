@@ -45,4 +45,30 @@ public class TvLogDetalleDatabaseHandler extends SQLiteOpenHelper {
 		
 		onCreate(db);
 	}
+    
+    public void addTvLogDetalle(TvLogDetalle tvLogDetalle) {
+    	
+	}
+	
+	public TvLogDetalle getTvLogDetalle(int id) {
+	    
+	    return null;
+	}
+	
+	public List<TvLog> getAllTvLogs() {
+		return null;
+	}
+	 
+	
+	public int getTvLogsCount() {
+		return 0;
+	}
+	
+	public int updateTvLogDetalle(TvLogDetalle tvLogDetalle) {
+		return 0;
+	}
+	
+	public int deleteTvLogDetalle(TvLogDetalle tvLogDetalle) {
+		return 0;
+	}
 }
