@@ -6,6 +6,9 @@ public class TvLog {
 	String _fecha;
 	double _horas_tv;
 	
+	public TvLog() {
+	}
+	
 	public TvLog(int _id, String _fecha, double _horas_tv) {
 		super();
 		this._id = _id;

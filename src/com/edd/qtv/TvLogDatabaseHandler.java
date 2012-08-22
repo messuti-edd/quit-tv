@@ -1,5 +1,6 @@
 package com.edd.qtv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -77,15 +78,38 @@ public class TvLogDatabaseHandler extends SQLiteOpenHelper {
 	}
 	
 	public List<TvLog> getAllTvLogs() {
-		return null;
+		List<TvLog> tvLogs = new ArrayList<TvLog>();
+		
+		String query = "SELECT * from " + TABLE_TV_LOG;
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(query, null);
+		
+		if (cursor.moveToFirst()) {
+			do {
+				TvLog tvLog = new TvLog();
+				tvLog.set_id( Integer.parseInt(cursor.getString(0)) );
+				tvLog.set_fecha( cursor.getString(1) );
+				tvLog.set_horas_tv( Double.parseDouble(cursor.getString(2)) );
+				
+				tvLogs.add(tvLog);
+			} while (cursor.moveToNext());
+		}
+		
+		return tvLogs;
 	}
 	 
 	
 	public int getTvLogsCount() {
-		return 0;
+		String query = "SELECT * from " + TABLE_TV_LOG;
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(query, null);
+		cursor.close();
+		
+		return cursor.getCount();
 	}
 	
-	// Updating single contact
 	public int updateTvLogDetalle(TvLog tvLog) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
@@ -96,8 +120,7 @@ public class TvLogDatabaseHandler extends SQLiteOpenHelper {
 		return db.update(TABLE_TV_LOG, values, KEY_ID + "=?", 
 				new String[] {String.valueOf(tvLog.get_id())});
 	}
-	 
-	// Deleting single contact
+	
 	public int deleteTvLogDetalle(TvLog tvLog) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		return db.delete(TABLE_TV_LOG, KEY_ID+"=?", 
